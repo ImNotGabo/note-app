@@ -31,6 +31,8 @@ export default function App() {
     }
   }, [notes]);
 
+  const sortedNotes = notes.sort((a, b) => b.updatedAt - a.updatedAt);
+
   async function createNewNote() {
     const newNote = {
       body: "# Type your markdown note's title here",
@@ -56,7 +58,7 @@ export default function App() {
       {notes.length > 0 ? (
         <Split sizes={[30, 70]} direction='horizontal' className='split'>
           <Sidebar
-            notes={notes}
+            notes={sortedNotes}
             currentNote={currentNote}
             setCurrentNoteId={setCurrentNoteId}
             newNote={createNewNote}
